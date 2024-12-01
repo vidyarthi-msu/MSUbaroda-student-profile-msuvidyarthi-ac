@@ -231,6 +231,12 @@
         &copy; 2024 The Maharaja Sayajirao University of Baroda. All rights reserved.
     </div>
     <script>
+        // Check if user is authenticated
+        if (!localStorage.getItem('authenticated')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <script>
         // Function to update the date and time
         function updateDateTime() {
             var now = new Date();

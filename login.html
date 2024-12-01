@@ -78,7 +78,7 @@
         <form id="login-form">
             <input type="text" id="username" placeholder="Username" required>
             <input type="password" id="password" placeholder="Password" required>
-            <div class="captcha" id="captcha">AB12C</div> <!-- This should be dynamically generated -->
+            <div class="captcha" id="captcha"></div>
             <input type="text" id="captcha-input" placeholder="Enter Captcha" required>
             <input type="submit" value="Sign In">
         </form>
@@ -103,6 +103,7 @@
             var captchaInput = document.getElementById('captcha-input').value;
 
             if (username === '8023009270' && password === 'K@shit78' && captcha === captchaInput) {
+                localStorage.setItem('authenticated', true);
                 window.location.href = 'index.html'; // Redirect to your website's main page
             } else {
                 alert('Invalid login credentials or captcha. Please try again.');
