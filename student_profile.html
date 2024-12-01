@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .header .title {
+            font-size: 18px;
+            text-align: center;
+            flex: 1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+        }
+        .header .profile img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header .profile .name {
+            margin-right: 20px;
+            font-size: 14px;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            margin-top: 60px; /* Height of the header */
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: calc(100% - 60px); /* Full height minus header height */
+            top: 60px; /* Adjust for fixed header */
+            box-sizing: border-box;
+            overflow-y: auto;
+            padding-bottom: 60px; /* Space for the footer */
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .sidebar a img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 220px;
+            margin-bottom: 60px; /* Height of the footer */
+            box-sizing: border-box;
+        }
+        .profile-container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            background-color: #f9f9f9;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .profile-picture {
+            float: right;
+            margin-left: 20px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            height: 150px;
+            width: 150px;
+        }
+        .profile-info {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .profile-info div {
+            flex: 1 1 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .profile-info div span {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .profile-info div span.value {
+            font-weight: normal;
+        }
+    .body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .profile-container {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .tabs {
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 20px;
+    }
+    .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #f9f9f9;
+        border-radius: 8px 8px 0 0;
+        transition: background-color 0.3s, border-bottom 0.3s;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        flex: 1;
+        max-width: 200px;
+    }
+    .tab:hover {
+        background-color: #e2e2e2;
+    }
+    .tab.active {
+        background-color: #fff;
+        border-bottom: 2px solid #007bff;
+        color: #007bff;
+    }
+    .tab-content {
+        display: none;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    .profile-info,
+    .request-info {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    .profile-info div,
+    .request-info div {
+        flex: 1 1 50%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .profile-info div span,
+    .request-info div label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .profile-info div span.value {
+        font-weight: normal;
+    }
+    .request-info div input,
+    .request-info div select,
+    .request-info div button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .request-info div button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .request-info div button:hover {
+        background-color: #0056b3;
+    }
+        .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="ms logo.png" alt="University Logo">
+        <div class="title">THE MAHARAJA SAYAJIRAO UNIVERSITY OF BARODA</div>
+        <div class="profile">
+            <img src="03.jpg" alt="Profile Picture">
+            <div class="name">KSHITIJ PANDYA</div>
+            <div class="date-time" id="date-time">Date and Time</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <p>PRN No: 8023009270</p>
+            <a href="index.html"><img src="home.png" alt="Dashboard">Dashboard</a>
+            <a href="student_profile.html"><img src="student.png" alt="Student Profile">Student Profile</a>
+            <a href="paper_list.html"><img src="document.png" alt="Paper List">Paper List</a>
+            <a href="request_status.html"><img src="information 1.png" alt="Request Status">Request Status</a>
+            <a href="examination_details.html"><img src="information 1.png" alt="Examination Details">Examination Details</a>
+            <a href="request_certificate.html"><img src="certificate.png" alt="Request For Certificate">Request For Certificate</a>
+            <a href="download_certificate.html"><img src="download.png" alt="Download Certificate">Download Certificate</a>
+            <a href="cancel_admission.html"><img src="cancel.png" alt="Cancel Admission">Cancel Admission</a>
+            <a href="progression.html"><img src="progressio.png" alt="Progression">Progression</a>
+            <a href="convocation.html"><img src="cancel.png" alt="Progression">convocation</a>
+        </div>
+        <div class="main-content">
+            <div class="profile-container">
+                <div class="tabs">
+                    <div class="tab active" onclick="showTab('personal-info')">Personal Info</div>
+                    <div class="tab active" onclick="showTab('additional-info')">Additional Info</div>
+                    <div class="tab active" onclick="showTab('educational-info')">Educational Info</div>
+                    <div class="tab active" onclick="showTab('request-form')">Request Form</div>
+                </div>
+
+                <div id="personal-info" class="tab-content active">
+                    <h2>Personal Details</h2>
+                    <img src="03.jpg" alt="Profile Picture" class="profile-picture">
+                    <div class="profile-info">
+                        <div>
+                            <span>Surname:</span>
+                            Pandya
+                        </div>
+                        <div>
+                            <span>First Name:</span>
+                            Kshitij
+                        </div>
+                        <div>
+                            <span>Father/ Mother/ Spouse Name:</span>
+                            Divyeshkumar
+                        </div>
+                        <div>
+                            <span>Mobile Number:</span>
+                            9924565099
+                        </div>
+                        <div>
+                            <span>Email ID:</span>
+                            workofpandya07@gmail.com
+                        </div>
+                        <div>
+                            <span>Gender:</span>
+                            Male
+                        </div>
+                        <div>
+                            <span>Date Of Birth:</span>
+                            03-11-2004
+                        </div>
+                        <div>
+                            <span>Upload Document (Date of Birth):</span>
+                            8023009270_DOB.pdf
+                        </div>
+                        <div>
+                            <span>Name as per Marksheet:</span>
+                            PANDYA KSHITIJ DIVYESHKUMAR
+                        </div>
+                        <div>
+                            <span>Religion:</span>
+                            Hindu
+                        </div>
+                        <div>
+                            <span>Other Religion:</span>
+                        </div>
+                        <div>
+                            <span>Mother Tongue:</span>
+                            Gujarati
+                        </div>
+                        <div>
+                            <span>Father Name:</span>
+                            DIVYESHKUMAR
+                        </div>
+                        <div>
+                            <span>Spouse Name:</span>
+                        </div>
+                        <div>
+                            <span>Marital Status:</span>
+                            Unmarried
+                        </div>
+                        <div>
+                            <span>Blood Group</span>
+                            B+
+                        </div>
+                        <div>
+                            <span>Do you belong to Vadodara(District)?</span>
+                            No
+                        </div>
+                        <div>
+                            <span>Permanent Adress</span>
+                            12, VINUPARK SOCIETY NR.P.D. PANDYA COLLEGE B.H. SMRUTY MANDIR, GHODASAR, AHMEDABAD
+                        </div>
+                        <div>
+                            <span>Have your Communication Adress(Present Adress) same as Permanent Residential Adress</span>
+                            Yes
+                        </div>
+                        <div>
+                            <span>Current Adress</span>
+                            12, VINUPARK SOCIETY NR.P.D. PANDYA COLLEGE B.H. SMRUTY MANDIR, GHODASAR, AHMEDABAD
+                        </div>
+                        <div>
+                            <span>Permanent Country</span>
+                            India
+                        </div>
+                        <div>
+                            <span>Current Country</span>
+                            India
+                        </div>
+                        <div>
+                            <span>Permanent State</span>
+                            Gujarat
+                        </div>
+                        <div>
+                            <span>Current State</span>
+                            Gujarat
+                        </div>
+                        <div>
+                            <span>Permanent District</span>
+                            Ahmedabad
+                        </div>
+                        <div>
+                            <span>Current District</span>
+                            Ahmedabad
+                        </div>
+                        <div>
+                            <span>Permanent City/Village</span>
+                            Ahmedabad
+                        </div>
+                        <div>
+                            <span>Current City/Village</span>
+                            Ahmedabad
+                        </div>
+                        <div>
+                            <span>Permanent Pincode</span>
+                            382445
+                        </div>
+                        <div>
+                            <span>Current Pincode</span>
+                            382445
+                            </div>
+                        </div>
+                            </div>
+                            <div id="additional-info" class="tab-content">
+                                <h2>Additional Details</h2>
+                                <div class="profile-info">
+                                    <div>
+                                        <span>Landline Number (Optional)</span>
+                                        </div>
+                                    <div>
+                                        <span>Upload Document (Photo Id)</span>
+                                        8023009270_PhotoId.pdf
+                                    </div>
+                                    <div>
+                                        <span>Aadhar Number</span>
+                                        4934-9158-9184
+                                    </div>
+                                    <div>
+                                        <span>Height (in cms)</span>
+                                        172
+                                    </div>
+                                    <div>
+                                        <span>Name as per Aadhar Card</span>
+                                        PANDYA KSHITIJ DIVYESHKUMAR
+                                    </div>
+                                    <div>
+                                        <span>Weight (in kgs)</span>
+                                        76
+                                    </div>
+                                    <div>
+                                        <span>Upload Document (Aadhar Card)</span>
+                                        8023009270_Aadhar.pdf
+                                    </div>
+                                    <div>
+                                        <span>Thalassemia Status</span>
+                                        No Thalassemia
+                                    </div>
+                                    <div>
+                                        <span>Passport Number</span>
+                                    </div>
+                                    <div>
+                                        <span>Do you want to give SMS Permission ?</span>
+                                        Yes
+                                    </div>
+                                    <div>
+                                        <span>Passport Date</span>
+                                    </div>
+                                    <div>
+                                        <span>Are you Employed or Self-Employed ?</span>
+                                        No
+                                    </div>
+                                    <div>
+                                        <span>Country of Citizenship</span>
+                                        India
+                                    </div>
+                                    <div>
+                                        <span>Current Employer Name	</span>
+                                    </div>
+                                    <div>
+                                        <span>Are you Non Resident Indian (NRI)?</span>
+                                        No
+                                    </div>
+                                    <div>
+                                        <span>Place Of Birth</span>
+                                        Ahmedabad
+                                    </div>
+                                    <div>
+                                        <span>Caste</span>
+                                    </div>       
+                                <div>
+                                    <span>Are you Comes Under Category/ Quota ?</span>
+                                    No
+                                </div>
+                                <div>
+                                    <span>Do you belong to Economically Weaker Section (EWS)?
+                                        (Only Applicable for General Category)</span>
+                                    No
+                                </div>
+                                <div>
+                                    <span>Category/ Quota</span>
+                                </div>
+                                <div>
+                                    <span>Upload Document (EWS)</span>
+                                    Not Applicable
+                                </div>
+                                <div>
+                                    <span>Upload Document (Category/ Quota)</span>
+                                    Not Applicable
+                                </div>
+                                <div>
+                                    <span>Declaration of Upload Document (EWS)</span>
+                                    No
+                                </div>
+                                <div>
+                                    <span>Declaration of Upload Document (Category/ Quota)</span>
+                                </div>
+                                <div>
+                                    <span>Are you Physically Challenged (PHC)?</span>
+                                    No
+                                </div>
+                                <div>
+                                    <Span>Reservation Category</Span>
+                                    General
+                                </div>
+                                <div>
+                                    <span>Upload Document (PHC)</span>
+                                    Not Applicable
+                                </div>
+                                <div>
+                                    <span>Upload Document (Ex.SC,ST,SEBC) Applicable
+                                        only for Gujarat</span>
+                                        Not Applicable
+                                </div>
+                                <div>
+                                    <span>Declaration of Upload Document (PHC)</span>
+                                    No
+                                </div>
+                                <div>
+                                    <span>Declaration of Upload Document (Ex.SC,ST,SEBC)
+                                        Applicable only for Gujarat</span>
+
+                                </div>
+                                <div>
+                                    <span>Disability Type</span>
+                                </div>
+                                <div>
+                                    <span>Disability Percentage (In %)</span>
+                                </div>
+                                <div>
+                                    <span>Father Occupation</span>
+                                    Service
+                                </div>
+                                <div>
+                                    <span>Guardian Occupation</span>
+                                </div>
+                                <div>
+                                    <span>Mother Occupation</span>
+                                    Service
+                                </div>
+                                <div>
+                                    <span>Guardian Category/ Quota</span>
+                                </div>
+                                <div>
+                                    <span>Family Annual Income</span>
+                                    1000000
+                                </div>
+                                <div>
+                                    <span>Guardian Contact Number</span>
+                                </div>
+                                <div>
+                                    <span>Father/ Mother Contact Number</span>
+                                    9924665099
+                                </div>
+                                <div>
+                                    <span>Guardian Annual Income</span>
+                                </div>
+                                <div>
+                                    <span>Guardian Name</span>
+                                </div>
+                                <div>
+                                    <span>Have your Guardian belongs to Economically
+                                        Backward Class (EBC) ?</span>
+                                        No
+                                </div>
+                            </div>
+                            </div>
+                            <div id="educational-info" class="tab-content">
+                                <h2>Education Details - [HSC / 12th / Intermediate]</h2>
+                                <div class="profile-info">
+                                    <div>
+                                        <span>Eligible Degree</span>
+                                        HSC / 12th / Intermediate
+                                    </div>
+                                    <div>
+                                        <span>Mark Obtained</span>
+                                        413
+                                    </div>
+                                    <div>
+                                        <span>Specialization</span>
+                                        HSC-Science
+                                    </div>
+                                    <div>
+                                        <span>Mark Outof</span>
+                                        500
+                                    </div>
+                                    <div>
+                                        <span>Board/University</span>
+                                        Others
+                                    </div>
+                                    <div>
+                                        <span>Grade</span>
+                                    </div>
+                                    <div>
+                                        <span>Faculty/College/ School Name</span>
+                                        GLM International school
+                                    </div>
+                                    <div>
+                                        <span>CGPA</span>
+                                    </div>
+                                    <div>
+                                        <span>School No.</span>
+                                    </div>
+                                    <div>
+                                        <span>Percentage Equivalence CGPA</span>
+                                    </div>
+                                    <div>
+                                        <span>Institute City</span>
+                                        Gandhinagar
+                                    </div>
+                                    <div>
+                                        <span>Percentage</span>
+                                        82.60
+                                    </div>
+                                    <div>
+                                        <span>Other Institute City</span>
+                                    </div>
+                                    <div>
+                                        <span>Class</span>
+                                        Distinction
+                                    </div>
+                                    <div>
+                                        <span>Exam Pass Location</span>
+                                        Outside Vadodara District
+                                    </div>
+                                    <div>
+                                        <span>Is First Trial?</span>
+                                        Yes
+                                    </div>
+                                    <div>
+                                        <span>Result Status</span>
+                                        Result With Marksheet
+                                    </div>
+                                    <div>
+                                        <span>Is Last Qualifying Exam?</span>
+                                        Yes
+                                    </div>
+                                    <div>
+                                        <span>Declaration of Marksheet</span>
+                                        No
+                                    </div>
+                                    <div>
+                                        <span>Teaching Language</span>
+                                        English
+                                    </div>
+                                    <div>
+                                        <span>Exam Pass Month</span>
+                                        Sep
+                                    </div>
+                                    <div>
+                                        <span>Attach Document</span>
+                                        8023009270_2_2020.Document from Kshitij
+                                    </div>
+                                    <div>
+                                        <span>Exam Pass Year</span>
+                                        2022
+                                    </div>
+                                    <div>
+                                        <span>Exam Seat Number</span>
+                                        09122091200059
+                                    </div>
+                                    <div>
+                                        <span>Exam Certificate Number</span>
+                                        09122091200059
+                                    </div>
+                                    </div>
+                                    </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="footer">
+                                &copy; 2024 The Maharaja Sayajirao University of Baroda. All rights reserved.
+                            </div>
+                            <script>
+                                function showTab(tabId) {
+                                    var tabs = document.getElementsByClassName('tab-content');
+                                    for (var i = 0; i < tabs.length; i++) {
+                                        tabs[i].classList.remove('active');
+                                    }
+                                    document.getElementById(tabId).classList.add('active');
+                            
+                                    var tabButtons = document.getElementsByClassName('tab');
+                                    for (var i = 0; i < tabButtons.length; i++) {
+                                        tabButtons[i].classList.remove('active');
+                                    }
+                                    event.currentTarget.classList.add('active');
+                                }
+                            </script>
+                            
+                            <script>
+                                // Function to update the date and time
+                                function updateDateTime() {
+                                    var now = new Date();
+                                    var options = { timeZone: 'Asia/Kolkata', hour12: true };
+                                    var timeString = now.toLocaleTimeString('en-US', options);
+                                    var dateString = now.toLocaleDateString('en-US', options);
+                                    document.getElementById('date-time').innerText = `Date and Time: ${dateString} ${timeString}`;
+                                }
+                        
+                                // Update the date and time every second
+                                setInterval(updateDateTime, 1000);
+                                updateDateTime(); // Initial call to set the date and time immediately
+                            </script>
+
+                            </body>
+                            </html>

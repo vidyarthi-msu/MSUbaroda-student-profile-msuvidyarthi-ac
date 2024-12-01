@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .header .title {
+            font-size: 18px;
+            text-align: center;
+            flex: 1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+        }
+        .header .profile img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header .profile .name {
+            margin-right: 20px;
+            font-size: 14px;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            margin-top: 60px; /* Height of the header */
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: calc(100% - 60px); /* Full height minus header height */
+            top: 60px; /* Adjust for fixed header */
+            box-sizing: border-box;
+            overflow-y: auto;
+            padding-bottom: 60px; /* Space for the footer */
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .sidebar a img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 220px;
+            margin-bottom: 60px; /* Height of the footer */
+            box-sizing: border-box;
+        }
+        .content {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        .download-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+  <div class="header">
+    <img src="ms logo.png" alt="University Logo">
+    <div class="title">THE MAHARAJA SAYAJIRAO UNIVERSITY OF BARODA</div>
+    <div class="profile">
+        <img src="03.jpg" alt="Profile Picture">
+        <div class="name">KSHITIJ PANDYA</div>
+        <div class="date-time" id="date-time">Date and Time</div>
+    </div>
+</div>
+<div class="container">
+    <div class="sidebar">
+        <p>PRN No: 8023009270</p>
+        <a href="index.html"><img src="home.png" alt="Dashboard">Dashboard</a>
+        <a href="student_profile.html"><img src="student.png" alt="Student Profile">Student Profile</a>
+        <a href="paper_list.html"><img src="document.png" alt="Paper List">Paper List</a>
+        <a href="request_status.html"><img src="information 1.png" alt="Request Status">Request Status</a>
+        <a href="examination_details.html"><img src="information 1.png" alt="Examination Details">Examination Details</a>
+        <a href="request_certificate.html"><img src="certificate.png" alt="Request For Certificate">Request For Certificate</a>
+        <a href="download_certificate.html"><img src="download.png" alt="Download Certificate">Download Certificate</a>
+        <a href="cancel_admission.html"><img src="cancel.png" alt="Cancel Admission">Cancel Admission</a>
+        <a href="progression.html"><img src="progressio.png" alt="Progression">Progression</a>
+        <a href="achievement.html"><img src="certi 2.png" alt="Achievement">Achievement</a>
+        <a href="convocation.html"><img src="cancel.png" alt="Progression">convocation</a>
+    </div>
+        <div class="main-content">
+            <div class="content">
+                <h2>Download Certificates</h2>
+                <p>Please find your certificates below. Click on the download button to get your certificate.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Certificate Name</th>
+                            <th>Issue Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><a href="completion_certificate.pdf" class="download-button">Download</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 The Maharaja Sayajirao University of Baroda</p>
+    </div>
+</body>
+</html>

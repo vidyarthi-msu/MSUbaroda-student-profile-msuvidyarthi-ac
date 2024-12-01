@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .header .title {
+            font-size: 18px;
+            text-align: center;
+            flex: 1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+        }
+        .header .profile img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header .profile .name {
+            margin-right: 20px;
+            font-size: 14px;
+        }
+        .container {
+            display: flex;
+            margin-top: 60px; /* Height of the header */
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: calc(100% - 60px); /* Full height minus header height */
+            top: 60px; /* Adjust for fixed header */
+            box-sizing: border-box;
+            overflow-y: auto;
+            padding-bottom: 60px; /* Space for the footer */
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .sidebar a img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 220px;
+            margin-bottom: 60px; /* Height of the footer */
+        }
+        .student-profile {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+        }
+        .profile-picture {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .student-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .profile-tabs {
+            margin-top: 20px;
+        }
+        .tabs {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab.active {
+            border-bottom: 2px solid #007bff;
+            font-weight: bold;
+        }
+        .tab-content {
+            margin-top: 20px;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .personal-details, .additional-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .personal-details div, .additional-details div {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .personal-details span, .additional-details span {
+            font-weight: bold;
+            display: block;
+        }
+        .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .paper-list {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .paper-list h3 {
+            margin-bottom: 20px;
+        }
+        .paper-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .paper-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="ms logo.png" alt="University Logo">
+        <div class="title">THE MAHARAJA SAYAJIRAO UNIVERSITY OF BARODA</div>
+        <div class="profile">
+            <img src="03.jpg" alt="Profile Picture">
+            <div class="name">KSHITIJ PANDYA</div>
+            <div class="date-time" id="date-time">Date and Time</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <p>PRN No: 8023009270</p>
+            <a href="index.html"><img src="home.png" alt="Dashboard">Dashboard</a>
+            <a href="student_profile.html"><img src="student.png" alt="Student Profile">Student Profile</a>
+            <a href="paper_list.html"><img src="document.png" alt="Paper List">Paper List</a>
+            <a href="request_status.html"><img src="information 1.png" alt="Request Status">Request Status</a>
+            <a href="examination_details.html"><img src="information 1.png" alt="Examination Details">Examination Details</a>
+            <a href="request_certificate.html"><img src="certificate.png" alt="Request For Certificate">Request For Certificate</a>
+            <a href="download_certificate.html"><img src="download.png" alt="Download Certificate">Download Certificate</a>
+            <a href="cancel_admission.html"><img src="cancel.png" alt="Cancel Admission">Cancel Admission</a>
+            <a href="progression.html"><img src="progressio.png" alt="Progression">Progression</a>
+            <a href="convocation.html"><img src="cancel.png" alt="Progression">convocation</a>
+        </div>
+        <div class="main-content">
+            <div class="paper-list">
+                <h3>Bachelor of Medicine and Bachelor of Surgery [Click here to View More]</h3>
+                <p><strong>FIRST M.B.B.S.-No Branch-2022-2023</strong></p>
+                <p>Admission Date: 08-11-2023</p>
+                <p>Eligibility By Faculty: Provisionally Approved</p>
+                <p>Eligibility By Academics: Eligible</p>
+                <h4>List of Papers:</h4>
+                <ul>
+                    <li>(BCH1109) Bio-Chemistry Practical-Internal</li>
+                    <li>(ANA1109) Anatomy Practical-Internal</li>
+                    <li>(PHS1109) Physiology Practical-Internal</li>
+                    <li>(BCH1108) Bio-Chemistry Theory-Internal</li>
+                    <li>(PHS1108) Physiology Theory-Internal</li>
+                    <li>(ANA1108) Anatomy Theory-Internal</li>
+                    <li>(ANA1111) Anatomy-I</li>
+                    <li>(ANA1112) Anatomy-II</li>
+                    <li>(ANA1113) Anatomy Practical</li>
+                    <li>(BCH1111) Bio-Chemistry-I</li>
+                    <li>(BCH1112) Bio-Chemistry-II</li>
+                    <li>(BCH1113) Bio-Chemistry Practical</li>
+                    <li>(PHS1111) Physiology-I</li>
+                    <li>(PHS1112) Physiology-II</li>
+                    <li>(PHS1113) Physiology Practical</li>
+                    <!-- Add more papers as needed -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2024 The Maharaja Sayajirao University of Baroda. All rights reserved.
+    </div>
+
+    <script>
+        // Function to update the date and time
+        function updateDateTime() {
+            var now = new Date();
+            var options = { timeZone: 'Asia/Kolkata', hour12: true };
+            var timeString = now.toLocaleTimeString('en-US', options);
+            var dateString = now.toLocaleDateString('en-US', options);
+            document.getElementById('date-time').innerText = `Date and Time: ${dateString} ${timeString}`;
+        }
+
+        // Update the date and time every second
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call to set the date and time immediately
+    </script>
+</body>
+</html>

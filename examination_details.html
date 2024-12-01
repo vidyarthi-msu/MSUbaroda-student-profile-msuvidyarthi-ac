@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examination Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .header .title {
+            font-size: 18px;
+            text-align: center;
+            flex: 1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+        }
+        .header .profile img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header .profile .name {
+            margin-right: 20px;
+            font-size: 14px;
+        }
+        .container {
+            display: flex;
+            margin-top: 60px; /* Height of the header */
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: calc(100% - 60px); /* Full height minus header height */
+            top: 60px; /* Adjust for fixed header */
+            box-sizing: border-box;
+            overflow-y: auto;
+            padding-bottom: 60px; /* Space for the footer */
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .sidebar a img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 220px;
+            margin-bottom: 60px; /* Height of the footer */
+        }
+        .exam-details {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .exam-details h3 {
+            margin-bottom: 20px;
+        }
+        .exam-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .exam-table th, .exam-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .exam-table th {
+            background-color: #f2f2f2;
+        }
+        .blue-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .blue-button:hover {
+    background-color: #0056b3;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    white-space: nowrap;
+  }
+
+  .th {
+    background-color: #f2f2f2;
+  }
+
+  .table-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            bottom: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer p {
+            margin: 0;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="ms logo.png" alt="University Logo">
+        <div class="title">THE MAHARAJA SAYAJIRAO UNIVERSITY OF BARODA</div>
+        <div class="profile">
+            <img src="03.jpg" alt="Profile Picture">
+            <div class="name">KSHITIJ PANDYA</div>
+            <div class="date-time" id="date-time">Date and Time</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <p>PRN No: 8023009270</p>
+            <a href="index.html"><img src="home.png" alt="Dashboard">Dashboard</a>
+            <a href="student_profile.html"><img src="student.png" alt="Student Profile">Student Profile</a>
+            <a href="paper_list.html"><img src="document.png" alt="Paper List">Paper List</a>
+            <a href="request_status.html"><img src="information 1.png" alt="Request Status">Request Status</a>
+            <a href="examination_details.html"><img src="information 1.png" alt="Examination Details">Examination Details</a>
+            <a href="request_certificate.html"><img src="certificate.png" alt="Request For Certificate">Request For Certificate</a>
+            <a href="download_certificate.html"><img src="download.png" alt="Download Certificate">Download Certificate</a>
+            <a href="cancel_admission.html"><img src="cancel.png" alt="Cancel Admission">Cancel Admission</a>
+            <a href="progression.html"><img src="progressio.png" alt="Progression">Progression</a>
+            <a href="achievement.html"><img src="certi 2.png" alt="Achievement">Achievement</a>
+            <a href="convocation.html"><img src="cancel.png" alt="Progression">convocation</a>
+        </div>
+        <div class="main-content">
+            <div class="exam-details">
+                <h3>Examination Details</h3>
+                <table>
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Action</th>
+                        <th>Hall Ticket</th>
+                        <th>Result</th>
+                        <th>TimeTable</th>
+                        <th>PRN</th>
+                        <th>Exam Event</th>
+                        <th>Faculty Name</th>
+                        <th>Semester Name</th>
+                        <th>Appearance Type</th>
+                        <th>Form No</th>
+                        <th>Exam Fee Start Date</th>
+                        <th>Exam Fee End Date</th>
+                        <th>Inward</th>
+                        <th>Seat Number</th>
+                        <th>Result Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td><button class="blue-button" onclick="openPDF('receipt1.pdf')">Receipt</button></td>
+                          <td><button class="blue-button" onclick="openPDF('hall_ticket1.pdf')">Hall Ticket</button></td>
+                          <td><button class="blue-button" onclick="openPDF('result1.pdf')">Result</button></td>
+                          <td><button class="blue-button" onclick="openPDF('exam_time_table1.pdf')">Exam Time Table</button></td>
+                          <td>8023009270</td>
+                          <td>November-2023</td>
+                          <td>Faculty of Medicine</td>
+                          <td>FIRST M.B.B.S.-No Branch-2022-2023</td>
+                          <td>Fresher</td>
+                          <td><a href="form1.pdf" download>100200956</a></td>
+                          <td>06/11/2023</td>
+                          <td>20/11/2023</td>
+                          <td>Inwarded</td>
+                          <td>-</td>
+                          <td>-</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td><button class="blue-button" onclick="openPDF('april-2024.pdf')">Receipt</button></td>
+                          <td><button class="blue-button" onclick="openPDF('april 2024 hall ticket.pdf')">Hall Ticket</button></td>
+                          <td><button class="blue-button" onclick="openPDF('april result.pdf')">Result</button></td>
+                          <td><button class="blue-button" onclick="openPDF('exam_time_table2.pdf')">Exam Time Table</button></td>
+                          <td>8023009270</td>
+                          <td>April-2024</td>
+                          <td>Faculty of Medicine</td>
+                          <td>FIRST M.B.B.S.-No Branch-2022-2023</td>
+                          <td>Never Appeared</td>
+                          <td><a href="form2.pdf" download>100268595</a></td>
+                          <td>01/04/2024</td>
+                          <td>08/04/2024</td>
+                          <td>Inwarded</td>
+                          <td>184467</td>
+                          <td>Fail</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td><button class="blue-button" onclick="openPDF('augest 24.pdf')">Receipt</button></td>
+                          <td><button class="blue-button" onclick="openPDF('admitcard.pdf')">Hall Ticket</button></td>
+                          <td><button class="blue-button" onclick="openPDF('8023009270.pdf')">Result</button></td>
+                          <td><button class="blue-button" onclick="openPDF('exam_time_table3.pdf')">Exam Time Table</button></td>
+                          <td>8023009270</td>
+                          <td>August-2024</td>
+                          <td>Faculty of Medicine</td>
+                          <td>FIRST M.B.B.S.-No Branch-2022-2023</td>
+                          <td>Repeater</td>
+                          <td><a href="form3.pdf" download>100278437</a></td>
+                          <td>27/07/2024</td>
+                          <td>06/08/2024</td>
+                          <td>Inwarded</td>
+                          <td>184652</td>
+                          <td>Pass</td>
+                        </tr>
+                      </tbody>
+                  
+                  </table>
+                  <div class="footer">
+                    &copy; 2024 The Maharaja Sayajirao University of Baroda. All rights reserved.
+                </div>
+                  <script>
+                    function openPDF(pdf) {
+                      window.open(pdf, '_blank');
+                    }
+                  </script>
+                  <script>
+                    // Function to update the date and time
+                    function updateDateTime() {
+                        var now = new Date();
+                        var options = { timeZone: 'Asia/Kolkata', hour12: true };
+                        var timeString = now.toLocaleTimeString('en-US', options);
+                        var dateString = now.toLocaleDateString('en-US', options);
+                        document.getElementById('date-time').innerText = `Date and Time: ${dateString} ${timeString}`;
+                    }
+            
+                    // Update the date and time every second
+                    setInterval(updateDateTime, 1000);
+                    updateDateTime(); // Initial call to set the date and time immediately
+                </script>
+                </div>
+                </div>
+    </div>
+    </body>
+</html>
